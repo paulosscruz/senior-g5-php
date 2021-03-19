@@ -21,7 +21,7 @@
     "php": "^7.2",
     "ext-soap": "*",
     "ext-json": "*",
-    "wsdl2phpgenerator/wsdl2phpgenerator": "^3.4",
+    "wsdl2phpgenerator/wsdl2phpgenerator": "^3.4"
   },
   "prefer-stable": true,
   "minimum-stability": "dev"
