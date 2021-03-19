@@ -4,7 +4,7 @@ Esta biblioteca mapeia os serviços da tecnologia [G5 da Senior](https://documen
 
 ## Instalação
 
-Adicionar **senior-g5-php** no seu projeto via [Composer](https://getcomposer.org/doc/00-intro.md):
+Adicione **senior-g5-php** no seu projeto via [Composer](https://getcomposer.org/doc/00-intro.md):
 
 ```bash
 composer require paulosscruz/senior-g5-php
@@ -185,3 +185,15 @@ $retorno = $cliente->obterCliente($usuarioErp, $senhaErp, $tipoCriptografia, $pa
 echo $cliente->getNomeCliente();
 echo $cliente->getSaldoDuplicatas();
 ```
+
+## Créditos
+
+- [Paulo Cruz][link-author]
+- [Todos Contribuidores][link-contributors]
+
+[link-author]: https://github.com/paulosscruz
+[link-contributors]: https://github.com/paulosscruz/senior-g5-php/graphs/contributors
+
+## Licença
+
+**senior-g5-php** está licenciado sob a [MIT License](http://opensource.org/licenses/MIT).
