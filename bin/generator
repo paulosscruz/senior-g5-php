@@ -1,0 +1,68 @@
+#!/usr/bin/env php
+
+<?php
+
+    error_reporting(E_ERROR | E_PARSE);
+
+    use Wsdl2PhpGenerator\Generator;
+    use Wsdl2PhpGenerator\Config;
+
+    include_once ('./vendor/autoload.php');
+
+    try {
+        $acceptedParams = [
+            'wsdl:',
+            'serviceName:',
+            'outputDir:',
+            'operationNames:',
+            'namespace:'
+        ];
+
+        $requiredParams = [
+            'wsdl:',
+            'serviceName:',
+            'outputDir:',
+        ];
+
+        $receivedParams = getopt(null, $acceptedParams);
+
+        foreach ($requiredParams as $param) {
+            $param = str_replace(':', '', $param);
+            if (!array_key_exists($param, $receivedParams)){
+                echo "\n [ERROR] - Parameter $param is required. \n";
+                return false;
+            };
+        }
+
+        $outputDir = $receivedParams['outputDir'] . '/' . $receivedParams['serviceName'];
+
+        $config = [
+            'inputFile' => $receivedParams['wsdl'],
+            'outputDir' => $outputDir,
+        ];
+
+        if (array_key_exists('namespace', $receivedParams)){
+            $config['namespaceName'] = $receivedParams['namespace'];
+        };
+
+        if (array_key_exists('operationNames', $receivedParams)){
+            $config['operationNames'] = $receivedParams['operationNames'];
+        };
+
+        $generator = new Generator();
+        $generator->generate(new Config($config));
+
+        $oldClassName = $outputDir . '/' . 'G5seniorservices.php';
+        $newClassName = $outputDir . '/' . $receivedParams['serviceName'] . '.php';
+        $contentClass = file_get_contents($oldClassName);
+        $contentClass = str_replace('G5seniorservices', $receivedParams['serviceName'], $contentClass);
+        file_put_contents($newClassName, $contentClass);
+        unlink($oldClassName);
+
+        echo "\n [SUCCESS] - WSDL successfully mapped. \n";
+        return true;
+    } catch (Exception $exception) {
+        echo "\n [ERROR] - Error while mapping the WSDL. Details: {$exception->getMessage()} \n";
+        return false;
+    }
+?>

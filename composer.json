@@ -1,0 +1,28 @@
+{
+  "name": "paulosscruz/senior-g5-php",
+  "description": "Gerador de classes para utilizar o Web Service G5 do ERP Senior.",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "php",
+    "senior",
+    "senior g5",
+    "senior erp",
+    "sapiens",
+    "sapiens erp"
+  ],
+  "authors": [
+    {
+      "name": "Paulo Cruz",
+      "email": "paulo.cruz@outlook.com"
+    }
+  ],
+  "require": {
+    "php": "^7.2",
+    "ext-soap": "*",
+    "ext-json": "*",
+    "wsdl2phpgenerator/wsdl2phpgenerator": "^3.4",
+  },
+  "prefer-stable": true,
+  "minimum-stability": "dev"
+}
